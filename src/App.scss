@@ -1,0 +1,26 @@
+@import './Variables.scss';
+
+html {
+  background: url(https://justinharkey.com/9647276757_c24213a2ab_h.jpg) 50% 50% no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-weight: $fontWeight--regular;
+}
+
+h1 {
+  display: block;
+  float: left;
+  margin: 20px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  padding: 18px 36px;
+  font-weight: $fontWeight--bold;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+h1 span {
+  font-weight: $fontWeight--regular;
+}
