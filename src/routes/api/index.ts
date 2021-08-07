@@ -1,10 +1,11 @@
+import type { IVideo } from 'src/models/video';
 import { API_KEY_YOUTUBE } from '../../constants';
 
 async function fetchVideos() {
     const allData = [];
     let morePagesAvailable = true;
     let nextPage = '';
-    const videos: any[] = [];
+    const videos: IVideo[] = [];
 
     while (morePagesAvailable) {
         const response = await fetch(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=50&playlistId=PLgZU13QtpzkvvyraXfdtKm1AY0ofsDvGD&key=${API_KEY_YOUTUBE}${nextPage ? `&pageToken=${nextPage}` : ''}`, {
@@ -17,7 +18,7 @@ async function fetchVideos() {
         console.log('Getting next video page')
     }
 
-    allData.forEach((item: any) => {
+    allData.forEach((item: IVideo) => {
         if (item.snippet.videoOwnerChannelTitle === 'ShustOne' && item.snippet.title !== 'Deleted video') {
             videos.push(item);
         }
@@ -26,7 +27,9 @@ async function fetchVideos() {
     return videos;
 }
 
-export async function get() {
+export async function get(): Promise<{
+    body: IVideo[];
+}> {
     return {
         body: await fetchVideos()
     }

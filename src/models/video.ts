@@ -1,7 +1,15 @@
-export interface IVideoThumbnails {
+export interface IVideoThumbnailItem {
     url: string,
     width: number,
     height: number
+}
+
+export interface IVideoThumbnails {
+    default: IVideoThumbnailItem;
+    medium: IVideoThumbnailItem;
+    high: IVideoThumbnailItem;
+    standard?: IVideoThumbnailItem | undefined;
+    maxres?: IVideoThumbnailItem | undefined;
 }
 
 export interface IVideo {
@@ -13,10 +21,7 @@ export interface IVideo {
         channelId: string,
         title: string,
         description: string,
-        thumbnails: any,
-        //   thumbnails: {
-        //     (key): IVideoThumbnails
-        //   },
+        thumbnails: IVideoThumbnails,
         channelTitle: string,
         videoOwnerChannelTitle: string,
         videoOwnerChannelId: string,

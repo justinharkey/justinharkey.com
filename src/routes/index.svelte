@@ -11,9 +11,11 @@
 </script>
 
 <script lang="ts">
-	export let videos;
+	import type { IVideo, IVideoThumbnails } from 'src/models/video';
 
-	const getThumbnailUrl = (thumbnails) => {
+	export let videos: IVideo[];
+
+	const getThumbnailUrl = (thumbnails: IVideoThumbnails) => {
 		let url = thumbnails?.medium?.url || '';
 		if (!url) {
 			url = thumbnails?.default?.url;
@@ -22,15 +24,22 @@
 			url = '';
 		}
 		return url;
-	}
+	};
 </script>
 
 <svelte:head>
 	<title>Justin Harkey - Daily Videos</title>
 </svelte:head>
+
 <div class="home">
 	{#each videos as video}
-		<a rel="external" target="_blank" href={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`} class="video" style={`background-image: url(${getThumbnailUrl(video.snippet.thumbnails)})`}>
+		<a
+			rel="external"
+			target="_blank"
+			href={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
+			class="video"
+			style={`background-image: url(${getThumbnailUrl(video.snippet.thumbnails)})`}
+		>
 			<span class="video__title">
 				{video.snippet.title}
 			</span>
@@ -40,7 +49,7 @@
 
 <style>
 	:global(body) {
-		font-family:Arial, Helvetica, sans-serif;
+		font-family: Arial, Helvetica, sans-serif;
 		margin: 0;
 		padding: 0;
 	}
@@ -51,14 +60,19 @@
 	}
 	.video {
 		width: 50%;
-		height: 26vw;
-		background-size: cover;
+		height: 29vw;
+		background-size: auto 100%;
 		background-position: center center;
 		background-repeat: no-repeat;
 		display: block;
 		position: relative;
 		text-decoration: none;
 		color: #fff;
+		transition: background 200ms ease-in-out;
+	}
+
+	.video:hover {
+		background-size: auto 110%;
 	}
 	.video__title {
 		font-size: 2.4vw;
@@ -70,6 +84,12 @@
 		text-align: right;
 		background: #000;
 		padding: 0.4vw 0.8vw;
+		transition: background 200ms ease-in-out, color 200ms ease-in-out;
+	}
+
+	.video:hover .video__title {
+		background: #fff;
+		color: #000;
 	}
 
 	@media (min-width: 600px) {
@@ -80,7 +100,6 @@
 		.video__title {
 			font-size: 1.8vw;
 			line-height: 1.8;
-
 		}
 	}
 
@@ -92,7 +111,6 @@
 		.video__title {
 			font-size: 1.4vw;
 			line-height: 1.4;
-
 		}
 	}
 
@@ -104,7 +122,6 @@
 		.video__title {
 			font-size: 1.2vw;
 			line-height: 1.2;
-
 		}
 	}
 </style>
