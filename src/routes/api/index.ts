@@ -24,6 +24,8 @@ async function fetchVideos() {
         }
     });
 
+    console.log('Video fetch complete')
+
     return videos;
 }
 

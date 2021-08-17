@@ -35,13 +35,16 @@
 	{#each videos as video}
 		<a
 			rel="external"
-			target="_blank"
-			href={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
+			href={`./video/${video.snippet.resourceId.videoId}`}
 			class="video"
 			style={`background-image: url(${getThumbnailUrl(video.snippet.thumbnails)})`}
 		>
 			<span class="video__title">
 				{video.snippet.title}
+			</span>
+			<br />
+			<span class="video__description">
+				{video.snippet.description}
 			</span>
 		</a>
 	{/each}
@@ -57,34 +60,43 @@
 		display: flex;
 		align-items: flex-start;
 		flex-wrap: wrap;
+		padding: 3vw 0;
+	}
+	#latest {
+		width: 90vw;
+		height: 50.625vw;
+		border-radius: 10px;
+		margin: 5vw;
 	}
 	.video {
-		width: 50%;
-		height: 29vw;
-		background-size: auto 100%;
+		width: 100%;
+		background-size: cover;
 		background-position: center center;
 		background-repeat: no-repeat;
 		display: block;
 		position: relative;
 		text-decoration: none;
 		color: #fff;
-		transition: background 200ms ease-in-out;
+		margin: 2vw 5vw;
+		min-height: 30vw;
+		padding: 3vw;
+		box-sizing: border-box;
 	}
 
-	.video:hover {
-		background-size: auto 110%;
+	.video__title,
+	.video__description {
+		font-size: 2.8vw;
+		line-height: 2;
+		font-weight: normal;
+		background: rgba(0, 0, 0, 0.7);
+		padding: 0.6vw 1vw;
+		transition: background 200ms ease-in-out, color 200ms ease-in-out;
 	}
 	.video__title {
-		font-size: 2.4vw;
-		line-height: 2.4;
+		font-size: 4vw;
 		font-weight: bold;
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		text-align: right;
-		background: #000;
-		padding: 0.4vw 0.8vw;
-		transition: background 200ms ease-in-out, color 200ms ease-in-out;
+		background: #fff;
+		color: #000;
 	}
 
 	.video:hover .video__title {
