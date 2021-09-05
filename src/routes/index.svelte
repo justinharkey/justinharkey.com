@@ -35,7 +35,7 @@
 </script>
 
 <svelte:head>
-	<title>Justin Harkey - Daily Videos</title>
+	<title>Daily Videos | Justin Harkey</title>
 </svelte:head>
 
 <div class="home">
