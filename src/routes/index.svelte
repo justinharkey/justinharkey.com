@@ -14,6 +14,7 @@
 	import type { IVideo, IVideoThumbnails } from 'src/models/video';
 
 	export let videos: IVideo[];
+	let videoList: IVideo[];
 
 	const getThumbnailUrl = (thumbnails: IVideoThumbnails) => {
 		let url = thumbnails?.medium?.url || '';
@@ -25,6 +26,12 @@
 		}
 		return url;
 	};
+
+	let searchString: string = '';
+
+	$: {
+		videoList = searchString ? videos.filter((video) => video.snippet.title.toLowerCase().includes(searchString) || video.snippet.description.toLowerCase().includes(searchString) ) : videos;
+	}
 </script>
 
 <svelte:head>
@@ -32,7 +39,10 @@
 </svelte:head>
 
 <div class="home">
-	{#each videos as video}
+	<div class="search">
+		<input class="search__input" type="text" bind:value={searchString} placeholder="Search videos" />
+	</div>
+	{#each videoList as video}
 		<a
 			rel="external"
 			href={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
@@ -59,6 +69,18 @@
 		flex-wrap: wrap;
 		padding: 0;
 	}
+	.search {
+		width: calc(100% - 10px);
+		margin: 5px;
+		box-sizing: border-box;
+	}
+	.search__input {
+		font: inherit;
+		width: 100%;
+		margin: 0;
+		padding: 5px;
+		box-sizing: border-box;
+	}
 	#latest {
 		width: 90vw;
 		height: 50.625vw;
@@ -80,7 +102,7 @@
 		box-sizing: border-box;
 		z-index: 1;
 	}
-	.video::after {
+	/* .video::after {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -90,7 +112,7 @@
 		display: block;
 		background: url('/imageOverlay.png') top left repeat;
 		z-index: -1;
-	}
+	} */
 
 	.video__title {
 		font-size: 4vw;
