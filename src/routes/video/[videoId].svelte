@@ -27,8 +27,6 @@
 <iframe
 	id="video"
 	type="text/html"
-	width="640"
-	height="360"
 	src={`https://www.youtube.com/embed/${video.snippet.resourceId.videoId}?autoplay=0&origin=http://justinharkey.com&modestbranding=1`}
 	frameborder="0"
 	title={video.snippet.title}

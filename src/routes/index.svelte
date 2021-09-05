@@ -35,16 +35,13 @@
 	{#each videos as video}
 		<a
 			rel="external"
-			href={`./video/${video.snippet.resourceId.videoId}`}
+			href={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
 			class="video"
 			style={`background-image: url(${getThumbnailUrl(video.snippet.thumbnails)})`}
+			target="_blank"
 		>
 			<span class="video__title">
 				{video.snippet.title}
-			</span>
-			<br />
-			<span class="video__description">
-				{video.snippet.description}
 			</span>
 		</a>
 	{/each}
@@ -60,7 +57,7 @@
 		display: flex;
 		align-items: flex-start;
 		flex-wrap: wrap;
-		padding: 3vw 0;
+		padding: 0;
 	}
 	#latest {
 		width: 90vw;
@@ -77,28 +74,34 @@
 		position: relative;
 		text-decoration: none;
 		color: #fff;
-		margin: 2vw 5vw;
-		min-height: 30vw;
-		padding: 3vw;
+		margin: 0;
+		min-height: 40vw;
+		padding: 0;
 		box-sizing: border-box;
+		z-index: 1;
+	}
+	.video::after {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		content: '';
+		display: block;
+		background: url('/imageOverlay.png') top left repeat;
+		z-index: -1;
 	}
 
-	.video__title,
-	.video__description {
-		font-size: 2.8vw;
-		line-height: 2;
-		font-weight: normal;
-		background: rgba(0, 0, 0, 0.7);
-		padding: 0.6vw 1vw;
-		transition: background 200ms ease-in-out, color 200ms ease-in-out;
-	}
 	.video__title {
 		font-size: 4vw;
 		font-weight: bold;
-		background: #fff;
-		color: #000;
+		background: #000;
+		color: #fff;
+		line-height: 2;
+		padding: 0.2vw 2vw;
+		transition: background 200ms ease-in-out, color 200ms ease-in-out;
+		display: inline-block;
 	}
-
 	.video:hover .video__title {
 		background: #fff;
 		color: #000;
@@ -106,19 +109,19 @@
 
 	@media (min-width: 600px) {
 		.video {
-			width: 33.33%;
-			height: 20vw;
+			width: 50%;
+			min-height: 25vw;
 		}
 		.video__title {
-			font-size: 1.8vw;
-			line-height: 1.8;
+			font-size: 2vw;
+			line-height: 2;
 		}
 	}
 
-	@media (min-width: 1024px) {
+	@media (min-width: 768px) {
 		.video {
-			width: 25%;
-			height: 16vw;
+			width: 33.33%;
+			min-height: 20vw;
 		}
 		.video__title {
 			font-size: 1.4vw;
@@ -126,7 +129,18 @@
 		}
 	}
 
-	@media (min-width: 1500px) {
+	@media (min-width: 1024px) {
+		.video {
+			width: 25%;
+			min-height: 14vw;
+		}
+		.video__title {
+			font-size: 1.2vw;
+			line-height: 1.2;
+		}
+	}
+
+	/* @media (min-width: 1500px) {
 		.video {
 			width: 20%;
 			height: 13vw;
@@ -135,5 +149,5 @@
 			font-size: 1.2vw;
 			line-height: 1.2;
 		}
-	}
+	} */
 </style>
