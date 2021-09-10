@@ -30,7 +30,7 @@
 	let searchString: string = '';
 
 	$: {
-		videoList = searchString ? videos.filter((video) => video.snippet.title.toLowerCase().includes(searchString) || video.snippet.description.toLowerCase().includes(searchString) ) : videos;
+		videoList = searchString ? videos.filter((video) => video.snippet.title.toLowerCase().includes(searchString.toLowerCase()) || video.snippet.description.toLowerCase().includes(searchString.toLowerCase()) ) : videos;
 	}
 </script>
 
