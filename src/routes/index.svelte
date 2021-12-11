@@ -27,10 +27,28 @@
 		return url;
 	};
 
+	const getUpdatedVideoList = (searchString: string) => {
+		let updatedVideos: IVideo[] = [];
+		const lowercaseSearchString = searchString.toLowerCase();
+		// we could use filter here or any other array operation besides a simple loop
+		// but loop is the fastest so here we are
+		for (let i = 0; i <= videos.length; i++) {
+			if (videos[i]) {
+				let videoSnippet = videos[i].snippet;
+				// also originally had .includes() here but index of is like 5x faster so
+				if (videoSnippet.title.toLowerCase().indexOf(lowercaseSearchString) !== -1 || videoSnippet.description.toLowerCase().indexOf(lowercaseSearchString) !== -1) {
+					updatedVideos.push(videos[i]);
+				}
+			}
+		}
+		return updatedVideos;
+	}
+
 	let searchString: string = '';
 
 	$: {
-		videoList = searchString ? videos.filter((video) => video.snippet.title.toLowerCase().includes(searchString.toLowerCase()) || video.snippet.description.toLowerCase().includes(searchString.toLowerCase()) ) : videos;
+		videoList = searchString ? getUpdatedVideoList(searchString) : videos;
+		console.log(searchString);
 	}
 </script>
 
@@ -46,20 +64,18 @@
 		<a
 			rel="external"
 			href={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
-			class="video"
 			style={`background-image: url(${getThumbnailUrl(video.snippet.thumbnails)})`}
+			class="video"
 			target="_blank"
 		>
-			<span class="video__title">
-				{video.snippet.title}
-			</span>
+			{video.snippet.title}
 		</a>
 	{/each}
 </div>
 
 <style>
 	:global(body) {
-		font-family: Arial, Helvetica, sans-serif;
+		font-family: 'Work Sans', Arial, Helvetica, sans-serif;
 		margin: 0;
 		padding: 0;
 	}
@@ -77,59 +93,43 @@
 	.search__input {
 		font: inherit;
 		width: 100%;
-		margin: 0;
-		padding: 5px;
+		margin: 2vw 0;
+		padding: 2vw 2vw;
+		box-sizing: border-box;
+		border-radius: 8px;
+		border: 1px solid #dfdfdf;
 		box-sizing: border-box;
 	}
-	#latest {
-		width: 90vw;
-		height: 50.625vw;
-		border-radius: 10px;
-		margin: 5vw;
-	}
-	.video {
-		width: 100%;
-		background-size: cover;
-		background-position: center center;
-		background-repeat: no-repeat;
-		display: block;
-		position: relative;
-		text-decoration: none;
-		color: #fff;
-		margin: 0;
-		min-height: 40vw;
-		padding: 0;
-		box-sizing: border-box;
-		z-index: 1;
-	}
-	/* .video::after {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		content: '';
-		display: block;
-		background: url('/imageOverlay.png') top left repeat;
-		z-index: -1;
-	} */
 
-	.video__title {
-		font-size: 4vw;
-		font-weight: bold;
-		background: #000;
-		color: #fff;
-		line-height: 2;
-		padding: 0.2vw 2vw;
-		transition: background 200ms ease-in-out, color 200ms ease-in-out;
-		display: inline-block;
-	}
-	.video:hover .video__title {
-		background: #fff;
+	.search__input:focus {
+		box-shadow: 0 3px 10px rgba(0,0,0,0.16);
 		color: #000;
 	}
 
-	@media (min-width: 600px) {
+	.video {
+		width: 100%;
+		display: flex;
+		text-decoration: none;
+		padding: 3vw 3vw 3vw 36vw;
+		margin: 0 1.5vw;
+		box-sizing: border-box;
+		align-items: center;
+		background-repeat: no-repeat;
+		background-size: 32vw 18vw;
+		background-position: 0 50%;
+		min-height: 21vw;
+		font-size: 3.4vw;
+		font-weight: 600;
+		color: #323232;
+		line-height: 1.4;
+		box-sizing: border-box;
+	}
+
+	.video:hover {
+		color: #0040b8;
+	}
+
+	/* @media (min-width: 600px) {
 		.video {
 			width: 50%;
 			min-height: 25vw;
@@ -160,7 +160,7 @@
 			font-size: 1.2vw;
 			line-height: 1.2;
 		}
-	}
+	} */
 
 	/* @media (min-width: 1500px) {
 		.video {
