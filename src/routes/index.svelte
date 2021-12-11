@@ -14,6 +14,7 @@
 	import type { IVideo, IVideoThumbnails } from 'src/models/video';
 
 	export let videos: IVideo[];
+	let videoList: IVideo[];
 
 	const getThumbnailUrl = (thumbnails: IVideoThumbnails) => {
 		let url = thumbnails?.medium?.url || '';
@@ -25,20 +26,29 @@
 		}
 		return url;
 	};
+
+	let searchString: string = '';
+
+	$: {
+		videoList = searchString ? videos.filter((video) => video.snippet.title.toLowerCase().includes(searchString.toLowerCase()) || video.snippet.description.toLowerCase().includes(searchString.toLowerCase()) ) : videos;
+	}
 </script>
 
 <svelte:head>
-	<title>Justin Harkey - Daily Videos</title>
+	<title>Daily Videos | Justin Harkey</title>
 </svelte:head>
 
 <div class="home">
-	{#each videos as video}
+	<div class="search">
+		<input class="search__input" type="text" bind:value={searchString} placeholder="Search videos" />
+	</div>
+	{#each videoList as video}
 		<a
 			rel="external"
-			target="_blank"
 			href={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
 			class="video"
 			style={`background-image: url(${getThumbnailUrl(video.snippet.thumbnails)})`}
+			target="_blank"
 		>
 			<span class="video__title">
 				{video.snippet.title}
@@ -57,36 +67,63 @@
 		display: flex;
 		align-items: flex-start;
 		flex-wrap: wrap;
+		padding: 0;
+	}
+	.search {
+		width: calc(100% - 10px);
+		margin: 5px;
+		box-sizing: border-box;
+	}
+	.search__input {
+		font: inherit;
+		width: 100%;
+		margin: 0;
+		padding: 5px;
+		box-sizing: border-box;
+	}
+	#latest {
+		width: 90vw;
+		height: 50.625vw;
+		border-radius: 10px;
+		margin: 5vw;
 	}
 	.video {
-		width: 50%;
-		height: 29vw;
-		background-size: auto 100%;
+		width: 100%;
+		background-size: cover;
 		background-position: center center;
 		background-repeat: no-repeat;
 		display: block;
 		position: relative;
 		text-decoration: none;
 		color: #fff;
-		transition: background 200ms ease-in-out;
+		margin: 0;
+		min-height: 40vw;
+		padding: 0;
+		box-sizing: border-box;
+		z-index: 1;
 	}
-
-	.video:hover {
-		background-size: auto 110%;
-	}
-	.video__title {
-		font-size: 2.4vw;
-		line-height: 2.4;
-		font-weight: bold;
+	/* .video::after {
 		position: absolute;
-		bottom: 0;
-		right: 0;
-		text-align: right;
-		background: #000;
-		padding: 0.4vw 0.8vw;
-		transition: background 200ms ease-in-out, color 200ms ease-in-out;
-	}
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		content: '';
+		display: block;
+		background: url('/imageOverlay.png') top left repeat;
+		z-index: -1;
+	} */
 
+	.video__title {
+		font-size: 4vw;
+		font-weight: bold;
+		background: #000;
+		color: #fff;
+		line-height: 2;
+		padding: 0.2vw 2vw;
+		transition: background 200ms ease-in-out, color 200ms ease-in-out;
+		display: inline-block;
+	}
 	.video:hover .video__title {
 		background: #fff;
 		color: #000;
@@ -94,19 +131,19 @@
 
 	@media (min-width: 600px) {
 		.video {
-			width: 33.33%;
-			height: 20vw;
+			width: 50%;
+			min-height: 25vw;
 		}
 		.video__title {
-			font-size: 1.8vw;
-			line-height: 1.8;
+			font-size: 2vw;
+			line-height: 2;
 		}
 	}
 
-	@media (min-width: 1024px) {
+	@media (min-width: 768px) {
 		.video {
-			width: 25%;
-			height: 16vw;
+			width: 33.33%;
+			min-height: 20vw;
 		}
 		.video__title {
 			font-size: 1.4vw;
@@ -114,7 +151,18 @@
 		}
 	}
 
-	@media (min-width: 1500px) {
+	@media (min-width: 1024px) {
+		.video {
+			width: 25%;
+			min-height: 14vw;
+		}
+		.video__title {
+			font-size: 1.2vw;
+			line-height: 1.2;
+		}
+	}
+
+	/* @media (min-width: 1500px) {
 		.video {
 			width: 20%;
 			height: 13vw;
@@ -123,5 +171,5 @@
 			font-size: 1.2vw;
 			line-height: 1.2;
 		}
-	}
+	} */
 </style>
