@@ -1,4 +1,6 @@
 <script context="module">
+	export const prerender = true;
+	
 	export async function load({ fetch }) {
 		const res = await fetch(`/api`);
 
@@ -60,17 +62,19 @@
 	<div class="search">
 		<input class="search__input" type="text" bind:value={searchString} placeholder="Search videos" />
 	</div>
-	{#each videoList as video}
-		<a
-			rel="external"
-			href={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
-			style={`background-image: url(${getThumbnailUrl(video.snippet.thumbnails)})`}
-			class="video"
-			target="_blank"
-		>
-			{video.snippet.title}
-		</a>
-	{/each}
+	<div class="videos">
+		{#each videoList as video}
+			<a
+				rel="external"
+				href={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
+				style={`background-image: url(${getThumbnailUrl(video.snippet.thumbnails)})`}
+				class="video"
+				target="_blank"
+			>
+				
+			</a>
+		{/each}
+	</div>
 </div>
 
 <style>
@@ -80,10 +84,14 @@
 		padding: 0;
 	}
 	.home {
-		display: flex;
-		align-items: flex-start;
-		flex-wrap: wrap;
 		padding: 0;
+	}
+
+	.videos {
+		display: grid;
+		gap: 10px;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		margin: 0 1vw 1vw;
 	}
 	.search {
 		width: calc(100% - 10px);
@@ -92,8 +100,8 @@
 	}
 	.search__input {
 		font: inherit;
-		width: 100%;
-		margin: 2vw 0;
+		width: calc( 100% - 2vw );
+		margin: 1vw;
 		padding: 2vw 2vw;
 		box-sizing: border-box;
 		border-radius: 8px;
@@ -107,22 +115,12 @@
 	}
 
 	.video {
+		background-color: #000;
+		aspect-ratio: 16/9;
 		width: 100%;
-		display: flex;
-		text-decoration: none;
-		padding: 3vw 3vw 3vw 36vw;
-		margin: 0 1.5vw;
-		box-sizing: border-box;
-		align-items: center;
+		background-size: contain;
 		background-repeat: no-repeat;
-		background-size: 32vw 18vw;
-		background-position: 0 50%;
-		min-height: 21vw;
-		font-size: 3.4vw;
-		font-weight: 600;
-		color: #323232;
-		line-height: 1.4;
-		box-sizing: border-box;
+		background-position: 50% 50%;
 	}
 
 	.video:hover {
