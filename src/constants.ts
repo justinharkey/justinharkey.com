@@ -1,1 +1,0 @@
-export const API_KEY_YOUTUBE = import.meta.env.VITE_API_KEY_YOUTUBE;
