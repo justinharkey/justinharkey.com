@@ -1,5 +1,5 @@
 import { API_KEY_YOUTUBE } from '../constants';
-import type { IVideo } from '../models/video';
+import type { IVideo, IVideoThumbnails } from '../models/video';
 import type { PageServerLoad } from './$types';
 
 export const load =  (async () => {

@@ -1,6 +1,7 @@
 <svelte:head>
 	<title>Blog</title>
 	<meta name="description" content="Blogs by Justin Harkey" />
+    <link rel='stylesheet' id='wp-block-library-css'  href='https://cms.justinharkey.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.6' media='all' />
 </svelte:head>
 
 <script>
@@ -11,9 +12,73 @@
 </script>
 
 {#if data.status === 200}
-    <h1>{@html data.blog.title.rendered}</h1>
-    <h3>{new Date(data.blog.date).toLocaleDateString('en-US')}</h3>
-    <p>{@html data.blog.content.rendered}</p>
+    <div id="page">
+        <h1>{@html data.blog.title.rendered}</h1>
+    
+        <div id="content">
+            <h3>{new Date(data.blog.date).toLocaleDateString('en-US')}</h3>
+            <div id="container">
+                {@html data.blog.content.rendered}
+            </div>
+        </div>
+    </div>
 {:else}
     <h2>Blog failed to load</h2>
 {/if}
+
+<style>
+	h1 {
+		width: 100%;
+		padding: 1rem;
+		border: 1px solid #bbb;
+		border-width: 0 1px;
+		background: rgba(211, 211, 211, 0.4);
+		box-sizing: border-box;
+		margin: 0;
+	}
+
+	#content {
+		padding: 1rem;
+		border: 1px solid #f80;
+		border-width: 0 1px;
+		background: rgba(255,255,255,0.4);
+		box-sizing: border-box;
+	}
+
+	#container {
+		max-width: 1400px;
+	}
+
+    #content :global(h2) {
+        font-size: 2rem;
+    }
+
+    #content :global(.wp-block-gallery ul) {
+	    list-style: none;
+	    margin: 0 0 -1.6rem 0;
+    }
+
+    #content :global(figure.wp-block-gallery.alignnone),
+    #content :global(figure.wp-block-gallery.aligncenter) {
+        margin-bottom: 3rem;
+        margin-top: 3rem;
+    }
+
+    #content :global(figure.wp-block-gallery.alignleft) {
+        margin: 0.3rem 2rem 2rem 0;
+    }
+
+    #content :global(figure.wp-block-gallery.alignright) {
+        margin: 0.3rem 0 2rem 2rem;
+    }
+
+    #content :global(figure.wp-block-gallery.alignwide) {
+        margin-bottom: 4rem;
+        margin-top: 4rem;
+    }
+
+    #content :global(figure.wp-block-gallery.alignfull) {
+        margin-bottom: 5rem;
+        margin-top: 5rem;
+    }
+</style>

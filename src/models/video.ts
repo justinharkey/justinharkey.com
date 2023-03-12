@@ -10,6 +10,7 @@ export interface IVideoThumbnails {
     high: IVideoThumbnailItem;
     standard?: IVideoThumbnailItem | undefined;
     maxres?: IVideoThumbnailItem | undefined;
+    test?: string;
 }
 
 export interface IVideo {
