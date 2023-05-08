@@ -15,7 +15,7 @@
 			{#if data.status === 200}
                 {#each data.blogs as blog, i}
                 <a href={blog.link.replace(/(https:\/\/cms.justinharkey.com)/, '/blog').replace(/\/$/, "")} style="overflow: hidden; display:block;">
-                    {#if blog._embedded['wp:featuredmedia']}
+                    {#if blog._embedded && blog._embedded['wp:featuredmedia'] && blog._embedded['wp:featuredmedia']['0']}
                         <img src={blog._embedded['wp:featuredmedia']['0'].source_url} style="max-width: 300px; max-height: 300px; float: right; margin: 0 0 0 20px" />
                     {/if}
                     <h2>{@html blog.title.rendered}</h2>
