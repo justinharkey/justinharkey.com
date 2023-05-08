@@ -10,11 +10,14 @@
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
 				<a href="/">Home</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/blog' ? 'page' : undefined}>
+			<!-- <li aria-current={$page.url.pathname.startsWith('/videos') ? 'page' : undefined}>
+				<a href="/videos">Videos</a>
+			</li> -->
+			<li aria-current={$page.url.pathname.startsWith('/blog') ? 'page' : undefined}>
 				<a href="/blog">Blog</a>
+			</li>
+			<li aria-current={$page.url.pathname.startsWith('/about') ? 'page' : undefined}>
+				<a href="/about">About</a>
 			</li>
 		</ul>
 	</nav>
@@ -25,6 +28,24 @@
 		background: rgba(16, 80, 133, 0.7);
 		border: 1px solid rgba(16, 80, 133, 0.7);
 		border-width: 1px 0;
+		margin-top: 16px;
+	}
+
+	header::before,
+	header::after {
+		content: '';
+		display: block;
+		width: 1px;
+		height: 16px;
+		background: #7a7a7a;
+		position: absolute;
+		top: 0;
+		left: 16px;
+	}
+
+	header::after {
+		left: auto;
+		right: 16px;
 	}
 
 	nav {
@@ -59,6 +80,18 @@
 		left: calc(50% - var(--size));
 		border: var(--size) solid transparent;
 		border-top: var(--size) solid var(--color-theme-1);
+	}
+
+	li[aria-current='page']::after {
+		content: '';
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		background-image: url(https://media.tenor.com/rCTjuSKG7FAAAAAC/static-gif-animated-tv.gif);
+		opacity: 0.6;
 	}
 
 	nav a {

@@ -2,7 +2,7 @@ import { CMS_POST_URL } from '../../constants';
 import type { PageServerLoad } from './$types';
 
 export const load =  (async () => {
-    const response = await fetch(CMS_POST_URL);
+    const response = await fetch(`${CMS_POST_URL}?_embed`);
     const status = response.status;
     let blogs = status === 200 ? await response.json() : null;
 

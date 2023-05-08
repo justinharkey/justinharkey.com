@@ -16,7 +16,7 @@
         <h1>{@html data.blog.title.rendered}</h1>
     
         <div id="content">
-            <h3>{new Date(data.blog.date).toLocaleDateString('en-US')}</h3>
+            <h3>{new Date(data.blog.date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</h3>
             <div id="container">
                 {@html data.blog.content.rendered}
             </div>
@@ -32,16 +32,33 @@
 		padding: 1rem;
 		border: 1px solid #bbb;
 		border-width: 0 1px;
-		background: rgba(211, 211, 211, 0.4);
+		background: rgba(77, 77, 77, 0.4);
 		box-sizing: border-box;
 		margin: 0;
+        position: relative;
+        color: #fff;
+	}
+
+    h1::after {
+		content: '';
+		width: 100%;
+		height: 100%;
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		background: url(https://media.tenor.com/uoJ_AcqxoPkAAAAC/typing.gif) 50% 80% no-repeat;
+		background-size: cover;
+		opacity: 0.7;
 	}
 
 	#content {
 		padding: 1rem;
 		border: 1px solid #f80;
 		border-width: 0 1px;
-		background: rgba(255,255,255,0.4);
+		background: rgba(87, 87, 87, 0.3);
+        color: #fff;
 		box-sizing: border-box;
 	}
 
@@ -51,6 +68,7 @@
 
     #content :global(h2) {
         font-size: 2rem;
+        color: #ffbb54;
     }
 
     #content :global(.wp-block-gallery ul) {
