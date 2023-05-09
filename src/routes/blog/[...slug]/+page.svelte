@@ -64,6 +64,7 @@
 
 	#container {
 		max-width: 1400px;
+        margin: 0 auto;
 	}
 
     #content :global(h2) {
