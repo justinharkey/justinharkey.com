@@ -1,8 +1,5 @@
 <script lang="ts">
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
-	import type { IVideo, IVideoThumbnails } from '../models/video';
+	import type { IVideoThumbnails, IVideo } from '../models/video';
 
 	export let data: { videos: IVideo[] };
 
@@ -37,8 +34,8 @@
 		{#each data.videos as video}
 		<a
 			rel="external noreferrer"
-			href={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
-			style={`background-image: url(${getThumbnailUrl(video.snippet.thumbnails)})`}
+			href={`https://www.youtube.com/watch?v=${video.videoId}`}
+			style={`background-image: url(${getThumbnailUrl(video.thumbnails)})`}
 			class="video"
 			target="_blank"
 		>
