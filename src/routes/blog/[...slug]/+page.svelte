@@ -100,4 +100,10 @@
         margin-bottom: 5rem;
         margin-top: 5rem;
     }
+
+    #content :global(.is-layout-flex) {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
 </style>
