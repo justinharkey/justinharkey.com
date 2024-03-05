@@ -50,7 +50,6 @@
 
 	$: {
 		videoList = searchString ? getUpdatedVideoList(searchString) : videos;
-		console.log(searchString);
 	}
 </script>
 
