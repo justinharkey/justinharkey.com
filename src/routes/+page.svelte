@@ -44,41 +44,12 @@
 	</div>
 
 <style>
-	h1 {
-		width: 100%;
-		padding: 1rem;
-		border: 1px solid #bbb;
-		border-width: 0 1px;
-		background: rgba(77, 77, 77, 0.4);
-		box-sizing: border-box;
-		margin: 0;
-		color: #fff;
-		position: relative;
-		text-shadow: 1px 1px 0 #000;
-	}
-
-	h1::after {
-		content: '';
-		width: 100%;
-		height: 100%;
-		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: -1;
-		background: url(https://i.pinimg.com/originals/e3/0e/74/e30e74fa2839e6bc66cf0e7ce196801e.gif) no-repeat 50% 50%;
-		background-size: cover;
-		opacity: 0.7;
-	}
-
 	#videos {
 		display: grid;
 		gap: 10px;
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 		padding: 1rem;
-		border: 1px solid #f80;
 		border-width: 0 1px;
-		background: rgba(87, 87, 87, 0.3);
 	}
 
 	#videos a {
@@ -90,13 +61,13 @@
 		background-position: 50% 50%;
 		transition: all 200ms ease-in-out;
 		opacity: 0.8;
-		/* clip-path: polygon(2% 0, 100% 0%, 98% 100%, 0% 100%); */
+		clip-path: polygon(1% 0, 100% 0%, 99% 100%, 0% 100%);
 	}
 
 	#videos a:hover {
 		background-size: 100%;
 		transition: all 200ms ease-in-out;
 		opacity: 1;
-		/* clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%); */
+		clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
 	}
 </style>
