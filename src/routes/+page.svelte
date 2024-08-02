@@ -89,14 +89,15 @@
 		background-repeat: no-repeat;
 		background-position: 50% 50%;
 		transition: all 200ms ease-in-out;
-		opacity: 0.8;
-		/* clip-path: polygon(2% 0, 100% 0%, 98% 100%, 0% 100%); */
+		opacity: 0.9;
+		clip-path: polygon(2% 0, 100% 2%, 98% 100%, 0 98%);
+		border-radius: 10px;
 	}
 
 	#videos a:hover {
 		background-size: 100%;
 		transition: all 200ms ease-in-out;
 		opacity: 1;
-		/* clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%); */
+		clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
 	}
 </style>

@@ -1,6 +1,7 @@
 <svelte:head>
 	<title>About</title>
 	<meta name="description" content="About this app" />
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://cms.justinharkey.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.6' media='all' />
 </svelte:head>
 
 <script lang="ts">
@@ -45,7 +46,7 @@
 	}
 
 	#content {
-		padding: 1rem;
+		padding: 10rem 1rem;
 		border: 1px solid #f80;
 		border-width: 0 1px;
 		background: rgba(87, 87, 87, 0.3);
@@ -58,10 +59,8 @@
 		margin: 0 auto;
 	}
 
-	#content :global(.alignwide) {
-		margin: 0;
-		padding: 0;
-		width: 100%;
+	#content :global(.alignleft) {
+		width: 290px;
 		color: #323232
 	}
 	

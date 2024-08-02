@@ -1,4 +1,4 @@
-import { CMS_POST_URL } from '../../../constants';
+import { CMS_POSTS_URL } from '../../../constants';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ params }) => {
@@ -6,9 +6,11 @@ export const load = (async ({ params }) => {
 	const slugArr = formattedSlug.split('/');
 	// console.log('slug array:', slugArr);
 	const slug = slugArr[slugArr.length - 1];
-	const response = await fetch(`${CMS_POST_URL}?slug=${slug}`);
+	const response = await fetch(`${CMS_POSTS_URL}?slug=${slug}`);
 	const status = await response.status;
 	const blog = status === 200 ? await response.json() : null;
+
+	console.log(blog);
 
 	return {
 		status: status,
