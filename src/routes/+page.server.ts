@@ -33,10 +33,10 @@ export const load = (async () => {
 			});
 			nextPage = data.nextPageToken;
 			morePagesAvailable = data.nextPageToken;
-			console.log('Getting next video page');
+			console.log(`Loading next video token: ${data.nextPageToken}`);
 		} else {
 			morePagesAvailable = false;
-			console.log('Aborting');
+			console.log('Video fetch fail');
 		}
 	}
 
