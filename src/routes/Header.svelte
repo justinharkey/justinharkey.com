@@ -24,5 +24,34 @@
 </header>
 
 <style>
+	header {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 
+	nav {
+
+	}
+
+	ul {
+		list-style: none;
+		margin: 2em 0;
+		padding: 0;
+	}
+
+	li {
+		padding: 0;
+		margin: 0;
+		display: inline-block;
+		font-size: 16px;
+		font-weight: 400;
+		margin: 0;
+		padding: 0.75em 1.5em;
+	}
+
+	a {
+		color: #336699;
+		text-decoration: none;
+	}
 </style>

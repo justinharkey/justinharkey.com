@@ -28,15 +28,11 @@ body {
 	font-style: normal;
 	font-variation-settings:
 		"wdth" 100;
+	position: relative;
 }
 
-#page {
-	max-width: 1200px;
-	margin: 0 auto;
-}
+#page {}
 
-#content {
-
-}
+#content {}
 
 #container {}

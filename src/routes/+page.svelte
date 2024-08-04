@@ -48,7 +48,7 @@
 		display: grid;
 		gap: 10px;
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		padding: 1rem;
+		padding: 0;
 		border-width: 0 1px;
 	}
 
@@ -61,13 +61,12 @@
 		background-position: 50% 50%;
 		transition: all 200ms ease-in-out;
 		opacity: 0.9;
-		clip-path: polygon(1% 0, 100% 0%, 99% 100%, 0% 100%);
+		border-radius: 4px;
 	}
 
 	#videos a:hover {
 		background-size: 100%;
 		transition: all 200ms ease-in-out;
 		opacity: 1;
-		clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
 	}
 </style>

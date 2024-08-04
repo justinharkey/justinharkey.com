@@ -13,6 +13,7 @@
 {#if data.status === 200}
     <div id="page">
         <div id="header">
+            <!-- <img src={data.blog._embedded['wp:featuredmedia']['0'].source_url} alt="Featured" /> -->
             <h1>{@html data.blog.title.rendered}</h1>
             <h3>{new Date(data.blog.date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</h3>
         </div>

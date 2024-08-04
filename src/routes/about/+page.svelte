@@ -19,5 +19,11 @@
 </div>
 
 <style>
-
+	:global(.wp-block-image .alignleft) {
+		margin-right: 2em;
+	}
+	:global(.wp-block-image .size-large) {
+		width: 40%;
+		height: auto;
+	}
 </style>
